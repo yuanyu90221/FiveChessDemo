@@ -19,7 +19,7 @@ public class Main {
         	int freq = Integer.parseInt(in.nextLine());        	
         	System.out.println("result = "  + findLastNum(N, freq));        	
         }
-   
+        in.close();
 	}
 	
 	public static int findLastNum(int number, int freq){
