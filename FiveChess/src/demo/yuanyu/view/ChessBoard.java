@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 
 import demo.yuanyu.model.Chess;
 
-
 public class ChessBoard extends JPanel implements MouseListener {
 	// 邊距
 	public static final int MARGIN = 30;
@@ -98,6 +97,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 		
 		Chess ch = new Chess(xIndex, yIndex, isBlack? Color.black: Color.white);
 		chessList[chessCount++] = ch;
+				
 		repaint();
 		
 		if(isWin()){
@@ -159,39 +159,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 		}
 		
 		// 畫棋子
-		for(int i = 0 ; i < chessCount; i++){
-			// 網格交叉點x,y
-			int xPos = chessList[i].getX() * GRID_SPAN + MARGIN;
-			int yPos = chessList[i].getY() * GRID_SPAN + MARGIN;
-			//設置顏色
-			g.setColor(chessList[i].getColor());
-			colortemp = chessList[i].getColor();
-			RadialGradientPaint paint = null;
-			if(colortemp == Color.black){
-				 paint = new RadialGradientPaint(xPos - Chess.DIAMETER /2 + 25, 
-												 yPos - Chess.DIAMETER /2 + 20, 20, 
-												 new float[]{0f,1f},
-												 new Color[]{Color.WHITE, Color.BLACK}); 			
-			}
-			else if(colortemp == Color.white){
-				 paint = new RadialGradientPaint(xPos - Chess.DIAMETER /2 + 25, 
-						 						 yPos - Chess.DIAMETER /2 + 10, 70, 
-						 						 new float[]{0f,1f},
-						 						 new Color[]{Color.WHITE, Color.BLACK});
-			}
-			if(paint != null){
-				((Graphics2D) g).setPaint(paint); 
-	            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-	            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_DEFAULT);
-			}
-			// 標記最後一顆棋子的紅色方框
-			Ellipse2D e = new Ellipse2D.Float(xPos - Chess.DIAMETER / 2, yPos - Chess.DIAMETER / 2, 34, 35);			
-			((Graphics2D) g).fill(e);
-			if(i == chessCount - 1){
-				g.setColor(Color.red);
-				g.drawRect(xPos - Chess.DIAMETER / 2, yPos - Chess.DIAMETER / 2, 34, 35);
-			}
-		}// for end
+		drawChess(g);
 	}
 	
 	private Chess getChess(int xIndex, int yIndex, Color color){
@@ -329,6 +297,43 @@ public class ChessBoard extends JPanel implements MouseListener {
 	public Dimension getPreferedSize(){
 		return new Dimension(MARGIN * 2 + GRID_SPAN * COLS, 
 				             MARGIN * 2 + GRID_SPAN * ROWS);
+	}
+
+	private void drawChess(Graphics g){
+		// 畫棋子
+		for(int i = 0 ; i < chessCount; i++){
+			// 網格交叉點x,y
+			int xPos = chessList[i].getX() * GRID_SPAN + MARGIN;
+			int yPos = chessList[i].getY() * GRID_SPAN + MARGIN;
+			//設置顏色
+			g.setColor(chessList[i].getColor());
+			colortemp = chessList[i].getColor();
+			RadialGradientPaint paint = null;
+			if(colortemp == Color.black){
+				 paint = new RadialGradientPaint(xPos - Chess.DIAMETER /2 + 25, 
+												 yPos - Chess.DIAMETER /2 + 20, 20, 
+												 new float[]{0f,1f},
+												 new Color[]{Color.WHITE, Color.BLACK}); 			
+			}
+			else if(colortemp == Color.white){
+				 paint = new RadialGradientPaint(xPos - Chess.DIAMETER /2 + 25, 
+						 						 yPos - Chess.DIAMETER /2 + 10, 70, 
+						 						 new float[]{0f,1f},
+						 						 new Color[]{Color.WHITE, Color.BLACK});
+			}
+			if(paint != null){
+				((Graphics2D) g).setPaint(paint); 
+	            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+	            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_DEFAULT);
+			}
+			// 標記最後一顆棋子的紅色方框
+			Ellipse2D e = new Ellipse2D.Float(xPos - Chess.DIAMETER / 2, yPos - Chess.DIAMETER / 2, 34, 35);			
+			((Graphics2D) g).fill(e);
+			if(i == chessCount - 1){
+				g.setColor(Color.red);
+				g.drawRect(xPos - Chess.DIAMETER / 2, yPos - Chess.DIAMETER / 2, 34, 35);
+			}
+		}// for end
 	}
 	
 }
