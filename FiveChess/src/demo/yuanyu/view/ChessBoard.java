@@ -142,12 +142,9 @@ public class ChessBoard extends JPanel implements MouseListener {
 		
 		super.paintComponent(g);
 		
-		int imgWidth = img.getWidth(this);
-		int imgHeight = img.getHeight(this);// 獲得圖片的寬度與高度
 		int FWidth = getWidth();
 		int FHeight = getHeight();// 獲得窗口的寬度與高度
-		int x = (FWidth - imgWidth) /2;
-		int y = (FHeight - imgHeight) /2;
+		// 填滿整個window
 		g.drawImage(img, 0, 0, FWidth, FHeight ,null);
 		
 		// 畫橫線
