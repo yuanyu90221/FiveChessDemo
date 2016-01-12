@@ -44,7 +44,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 	
 	public ChessBoard(){
 		
-		img = Toolkit.getDefaultToolkit().getImage("D:\board.jpg");
+		img = Toolkit.getDefaultToolkit().getImage("D:/board.jpg");
 		
 		addMouseListener(this);
 		addMouseMotionListener(new MouseMotionListener() {
@@ -148,7 +148,8 @@ public class ChessBoard extends JPanel implements MouseListener {
 		int FHeight = getHeight();// 獲得窗口的寬度與高度
 		int x = (FWidth - imgWidth) /2;
 		int y = (FHeight - imgHeight) /2;
-		g.drawImage(img, x, y, null);
+		g.drawImage(img, 0, 0, FWidth, FHeight ,null);
+		
 		// 畫橫線
 		for(int i = 0 ; i <= ROWS; i++ ){
 			g.drawLine(MARGIN, MARGIN + i * GRID_SPAN, MARGIN + COLS * GRID_SPAN, MARGIN + i * GRID_SPAN);		

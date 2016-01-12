@@ -76,9 +76,8 @@ public class StartChessFrame extends JFrame {
 	    add(toolbar, BorderLayout.SOUTH);
 	    add(chessBoard);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
-	   
-	    setExtendedState(JFrame.MAXIMIZED_BOTH);
+	    setSize(610, 700);
+	    setResizable(false);
 	    
 	}
 	
