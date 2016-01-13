@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import demo.yuanyu.model.Chess;
+import demo.yuanyu.model.SelfResources;
 
 public class ChessBoard extends JPanel implements MouseListener {
 	// 邊距
@@ -84,7 +85,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 		if(gameOver)
 			return ;
 		
-		String colorName = isBlack? "黑棋" : "白棋";
+		String colorName = isBlack? SelfResources.BLACK_CHESS : SelfResources.WHITE_CHESS;
 		
 		// 座標轉換
 		xIndex = (e.getX() - MARGIN + GRID_SPAN / 2) / GRID_SPAN;
@@ -101,7 +102,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 		repaint();
 		
 		if(isWin()){
-			String msg = String.format("恭喜，%s贏了!", colorName);
+			String msg = String.format(SelfResources.WINNER_MSG, colorName);
 			JOptionPane.showMessageDialog(this, msg);
 			gameOver = true;
 			restartGame();

@@ -13,6 +13,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import demo.yuanyu.model.SelfResources;
+
 
 
 public class StartChessFrame extends JFrame {
@@ -24,11 +26,8 @@ public class StartChessFrame extends JFrame {
 	private JMenu sysMenu;
 	private JMenuItem startMenuItem, exitMenuItem, backMenuItem;
 	
-	private final String restart = "重新開始";
-	private final String exit = "退出";
-	private final String regrade = "悔棋";
 	public StartChessFrame(){
-		setTitle("單機五子棋");
+		setTitle(SelfResources.GAME_NAME);
 		chessBoard = new ChessBoard();
 		
 		//
@@ -38,11 +37,11 @@ public class StartChessFrame extends JFrame {
 		
 		//創建添加menu
 		menuBar = new JMenuBar();
-		sysMenu = new JMenu("系統");
+		sysMenu = new JMenu(SelfResources.SYSTEM);
 		
-		startMenuItem = new JMenuItem(restart);
-		exitMenuItem = new JMenuItem(exit);
-		backMenuItem = new JMenuItem(regrade);
+		startMenuItem = new JMenuItem(SelfResources.RESTART);
+		exitMenuItem = new JMenuItem(SelfResources.EXIT);
+		backMenuItem = new JMenuItem(SelfResources.REGRADE);
 		
 		sysMenu.add(startMenuItem);
 		sysMenu.add(exitMenuItem);
@@ -59,9 +58,9 @@ public class StartChessFrame extends JFrame {
 	    
 	    toolbar = new JPanel();
 	    
-	    startButton = new JButton(restart);
-	    exitButton = new JButton(exit);
-	    backButton = new JButton(regrade);
+	    startButton = new JButton(SelfResources.RESTART);
+	    exitButton = new JButton(SelfResources.EXIT);
+	    backButton = new JButton(SelfResources.REGRADE);
 	    
 	    toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
 	    
@@ -88,14 +87,15 @@ public class StartChessFrame extends JFrame {
 			Object obj = e.getSource();
 			
 			if( obj == startMenuItem || obj == startButton){
-				System.out.println("重新開始");
+				System.out.println(SelfResources.RESTART);
 				chessBoard.restartGame();
 			}
 			else if( obj == exitMenuItem || obj == exitButton){
+				System.out.println(SelfResources.EXIT);
 				System.exit(0);
 			}
 			else if( obj == backMenuItem || obj == backButton){
-				System.out.println("悔棋");
+				System.out.println(SelfResources.REGRADE);
 				chessBoard.goback();
 			}
 		}
