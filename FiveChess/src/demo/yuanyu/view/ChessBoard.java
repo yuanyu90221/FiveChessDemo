@@ -105,6 +105,7 @@ public class ChessBoard extends JPanel implements MouseListener {
 			JOptionPane.showMessageDialog(this, msg);
 			gameOver = true;
 			restartGame();
+			return;
 		}
 		isBlack = !isBlack;
 	}
